@@ -1,12 +1,12 @@
 {
-  "name": "globequiz",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+	"name": "globequiz",
+	"description": "A quiz game about the world",
+	"author": "STEF0245",
+	"repository": "https://github.com/STEF0245/GlobeQuiz",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"license": "ISC"
 }
