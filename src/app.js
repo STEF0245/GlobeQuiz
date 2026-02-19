@@ -27,4 +27,8 @@ app.use(debug)
 app.use(authRoutes)
 app.use(pageRoutes)
 
+app.get('/favicon.ico', (req, res) =>
+	res.sendFile(path.join(process.cwd(), 'public', 'images', 'GlobeQuiz.png'))
+)
+
 export default app
