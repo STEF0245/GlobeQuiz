@@ -4,9 +4,21 @@
 	"author": "STEF0245",
 	"repository": "https://github.com/STEF0245/GlobeQuiz",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "src/server.js",
+	"type": "module",
 	"scripts": {
-		"start": "node index.js"
+		"start": "node src/server.js"
 	},
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^2.2.2",
+		"cookie-parser": "^1.4.7",
+		"cors": "^2.8.6",
+		"ejs": "^4.0.1",
+		"express": "^5.2.1",
+		"firebase": "^12.9.0",
+		"firebase-admin": "^13.6.1",
+		"node-fetch": "^3.3.2",
+		"path": "^0.12.7"
+	}
 }
