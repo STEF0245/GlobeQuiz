@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/tailwind.css" />
+		<title>GlobeQuiz - Settings</title>
+	</head>
+	<body class="bg-gray-50">
+		<%- include('../partials/header') %>
+
+		<div class="container mx-auto px-4 py-8">
+			<!-- Header -->
+			<div class="mb-8">
+				<a
+					href="/profile"
+					class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2 mb-4"
+				>
+					<svg
+						class="w-5 h-5"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M15 19l-7-7 7-7"
+						></path>
+					</svg>
+					Back to Profile
+				</a>
+				<h1 class="text-4xl font-bold text-gray-800 mb-2">Settings</h1>
+				<p class="text-gray-600">
+					Manage your account settings and preferences
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-4 gap-8">
+				<!-- Sidebar -->
+				<div class="md:col-span-1">
+					<div class="bg-white rounded-xl shadow p-6 sticky top-8">
+						<h3 class="text-lg font-bold text-gray-800 mb-4">
+							Settings Menu
+						</h3>
+
+						<div class="space-y-2">
+							<a
+								href="/settings"
+								class="block p-3 rounded-lg bg-blue-50 border-l-4 border-blue-600 text-blue-600 font-semibold"
+							>
+								<svg
+									class="w-5 h-5 inline mr-2"
+									fill="currentColor"
+									viewBox="0 0 20 20"
+								>
+									<path
+										d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+									></path>
+								</svg>
+								Account Settings
+							</a>
+							<a
+								href="/preferences"
+								class="block p-3 rounded-lg hover:bg-gray-100 text-gray-700 font-semibold transition-colors"
+							>
+								<svg
+									class="w-5 h-5 inline mr-2"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+									></path>
+								</svg>
+								Preferences
+							</a>
+							<a
+								href="/password"
+								class="block p-3 rounded-lg hover:bg-gray-100 text-gray-700 font-semibold transition-colors"
+							>
+								<svg
+									class="w-5 h-5 inline mr-2"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+									></path>
+								</svg>
+								Password & Security
+							</a>
+							<a
+								href="/notifications"
+								class="block p-3 rounded-lg hover:bg-gray-100 text-gray-700 font-semibold transition-colors"
+							>
+								<svg
+									class="w-5 h-5 inline mr-2"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+									></path>
+								</svg>
+								Notifications
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Main Content -->
+				<div class="md:col-span-3">
+					<!-- Edit Profile -->
+					<div class="bg-white rounded-xl shadow p-8 mb-8">
+						<h2
+							class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"
+						>
+							<svg
+								class="w-6 h-6 text-blue-600"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path>
+							</svg>
+							Edit Profile
+						</h2>
+
+						<form class="space-y-6">
+							<div class="grid md:grid-cols-2 gap-6">
+								<!-- Full Name -->
+								<div>
+									<label
+										for="fullname"
+										class="block text-sm font-semibold text-gray-700 mb-2"
+										>Full Name</label
+									>
+									<input
+										type="text"
+										id="fullname"
+										name="fullname"
+										value="<%= user?.displayName || '' %>"
+										class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+										placeholder="Your full name"
+									/>
+								</div>
+
+								<!-- Email (disabled) -->
+								<div>
+									<label
+										for="email"
+										class="block text-sm font-semibold text-gray-700 mb-2"
+										>Email Address</label
+									>
+									<input
+										type="email"
+										id="email"
+										name="email"
+										value="<%= user?.email || '' %>"
+										disabled
+										class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
+									/>
+									<p class="text-xs text-gray-500 mt-1">
+										Email cannot be changed. Contact support
+										to update.
+									</p>
+								</div>
+							</div>
+
+							<!-- Bio -->
+							<div>
+								<label
+									for="bio"
+									class="block text-sm font-semibold text-gray-700 mb-2"
+									>Bio</label
+								>
+								<textarea
+									id="bio"
+									name="bio"
+									rows="4"
+									class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+									placeholder="Tell us about yourself..."
+								></textarea>
+								<p class="text-xs text-gray-500 mt-1">
+									Maximum 500 characters
+								</p>
+							</div>
+
+							<!-- Submit Button -->
+							<button
+								type="submit"
+								class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+							>
+								<svg
+									class="w-5 h-5"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M5 13l4 4L19 7"
+									></path>
+								</svg>
+								Save Changes
+							</button>
+						</form>
+					</div>
+
+					<!-- Privacy Settings -->
+					<div class="bg-white rounded-xl shadow p-8 mb-8">
+						<h2
+							class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"
+						>
+							<svg
+								class="w-6 h-6 text-blue-600"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+								></path>
+							</svg>
+							Privacy Settings
+						</h2>
+
+						<div class="space-y-4">
+							<!-- Privacy Option 1 -->
+							<div
+								class="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
+							>
+								<div class="flex-1">
+									<p class="font-semibold text-gray-800">
+										Make profile public
+									</p>
+									<p class="text-sm text-gray-500">
+										Allow other users to see your profile
+										and stats
+									</p>
+								</div>
+								<label
+									class="relative inline-flex items-center cursor-pointer"
+								>
+									<input
+										type="checkbox"
+										checked
+										class="sr-only peer"
+									/>
+									<div
+										class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
+									></div>
+								</label>
+							</div>
+
+							<!-- Privacy Option 2 -->
+							<div
+								class="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
+							>
+								<div class="flex-1">
+									<p class="font-semibold text-gray-800">
+										Show achievements publicly
+									</p>
+									<p class="text-sm text-gray-500">
+										Display your badges and achievements
+									</p>
+								</div>
+								<label
+									class="relative inline-flex items-center cursor-pointer"
+								>
+									<input
+										type="checkbox"
+										checked
+										class="sr-only peer"
+									/>
+									<div
+										class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
+									></div>
+								</label>
+							</div>
+
+							<!-- Privacy Option 3 -->
+							<div
+								class="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
+							>
+								<div class="flex-1">
+									<p class="font-semibold text-gray-800">
+										Allow direct messages
+									</p>
+									<p class="text-sm text-gray-500">
+										Let other users send you messages
+									</p>
+								</div>
+								<label
+									class="relative inline-flex items-center cursor-pointer"
+								>
+									<input
+										type="checkbox"
+										class="sr-only peer"
+									/>
+									<div
+										class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"
+									></div>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Danger Zone -->
+					<div class="bg-red-50 border border-red-300 rounded-xl p-8">
+						<h2
+							class="text-2xl font-bold text-red-800 mb-6 flex items-center gap-2"
+						>
+							<svg
+								class="w-6 h-6"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+									clip-rule="evenodd"
+								></path>
+							</svg>
+							Danger Zone
+						</h2>
+
+						<p class="text-gray-700 mb-6">
+							Once you delete your account, there is no going
+							back. Please be certain.
+						</p>
+
+						<button
+							class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition-colors"
+						>
+							Delete My Account
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%- include('../partials/footer') %>
+	</body>
+</html>

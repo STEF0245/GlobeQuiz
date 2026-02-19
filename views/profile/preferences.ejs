@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <title>GlobeQuiz - Preferences</title>
+</head>
+<body class="bg-gray-50">
+    <%- include('../partials/header') %>
+    
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <a href="/profile" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2 mb-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Profile
+            </a>
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Preferences</h1>
+            <p class="text-gray-600">Customize your quiz experience</p>
+        </div>
+        
+        <div class="grid md:grid-cols-4 gap-8">
+            <!-- Sidebar -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-xl shadow p-6 sticky top-8">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Settings Menu</h3>
+                    
+                    <div class="space-y-2">
+                        <a href="/settings" class="block p-3 rounded-lg hover:bg-gray-100 text-gray-700 font-semibold transition-colors">
+                            <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                            </svg>
+                            Account Settings
+                        </a>
+                        <a href="/preferences" class="block p-3 rounded-lg bg-blue-50 border-l-4 border-blue-600 text-blue-600 font-semibold">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                            Preferences
+                        </a>
+                        <a href="/password" class="block p-3 rounded-lg hover:bg-gray-100 text-gray-700 font-semibold transition-colors">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                            Password & Security
+                        </a>
+                        <a href="/notifications" class="block p-3 rounded-lg hover:bg-gray-100 text-gray-700 font-semibold transition-colors">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            Notifications
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="md:col-span-3">
+                <!-- Appearance -->
+                <div class="bg-white rounded-xl shadow p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                        Appearance
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Theme -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Theme</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="theme" value="light" <%= (preferences?.theme === 'light' || !preferences?.theme) ? 'checked' : '' %> class="sr-only peer">
+                                    <div class="border-2 border-gray-300 peer-checked:border-blue-600 peer-checked:bg-blue-50 rounded-lg p-4 text-center hover:border-blue-400 transition-all">
+                                        <svg class="w-8 h-8 mx-auto mb-2 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                        </svg>
+                                        <p class="font-semibold text-gray-700">Light</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="theme" value="dark" <%= preferences?.theme === 'dark' ? 'checked' : '' %> class="sr-only peer">
+                                    <div class="border-2 border-gray-300 peer-checked:border-blue-600 peer-checked:bg-blue-50 rounded-lg p-4 text-center hover:border-blue-400 transition-all">
+                                        <svg class="w-8 h-8 mx-auto mb-2 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                                        </svg>
+                                        <p class="font-semibold text-gray-700">Dark</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="theme" value="auto" <%= preferences?.theme === 'auto' ? 'checked' : '' %> class="sr-only peer">
+                                    <div class="border-2 border-gray-300 peer-checked:border-blue-600 peer-checked:bg-blue-50 rounded-lg p-4 text-center hover:border-blue-400 transition-all">
+                                        <svg class="w-8 h-8 mx-auto mb-2 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                        </svg>
+                                        <p class="font-semibold text-gray-700">Auto</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- General Settings -->
+                <div class="bg-white rounded-xl shadow p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        General Settings
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Language -->
+                        <div>
+                            <label for="language" class="block text-sm font-semibold text-gray-700 mb-2">Language</label>
+                            <select 
+                                id="language"
+                                name="language"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            >
+                                <option value="en" <%= (preferences?.language === 'en' || !preferences?.language) ? 'selected' : '' %>>English</option>
+                                <option value="es" <%= preferences?.language === 'es' ? 'selected' : '' %>>Español</option>
+                                <option value="fr" <%= preferences?.language === 'fr' ? 'selected' : '' %>>Français</option>
+                                <option value="de" <%= preferences?.language === 'de' ? 'selected' : '' %>>Deutsch</option>
+                                <option value="zh" <%= preferences?.language === 'zh' ? 'selected' : '' %>>中文</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Timezone -->
+                        <div>
+                            <label for="timezone" class="block text-sm font-semibold text-gray-700 mb-2">Timezone</label>
+                            <select 
+                                id="timezone"
+                                name="timezone"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            >
+                                <option value="UTC" <%= (preferences?.timezone === 'UTC' || !preferences?.timezone) ? 'selected' : '' %>>UTC (Coordinated Universal Time)</option>
+                                <option value="America/New_York" <%= preferences?.timezone === 'America/New_York' ? 'selected' : '' %>>Eastern Time (ET)</option>
+                                <option value="America/Chicago" <%= preferences?.timezone === 'America/Chicago' ? 'selected' : '' %>>Central Time (CT)</option>
+                                <option value="America/Denver" <%= preferences?.timezone === 'America/Denver' ? 'selected' : '' %>>Mountain Time (MT)</option>
+                                <option value="America/Los_Angeles" <%= preferences?.timezone === 'America/Los_Angeles' ? 'selected' : '' %>>Pacific Time (PT)</option>
+                                <option value="Europe/London" <%= preferences?.timezone === 'Europe/London' ? 'selected' : '' %>>British Time (GMT/BST)</option>
+                                <option value="Europe/Paris" <%= preferences?.timezone === 'Europe/Paris' ? 'selected' : '' %>>Central European Time (CET)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quiz Settings -->
+                <div class="bg-white rounded-xl shadow p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Quiz Settings
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Difficulty -->
+                        <div>
+                            <label for="difficulty" class="block text-sm font-semibold text-gray-700 mb-2">Default Difficulty</label>
+                            <select 
+                                id="difficulty"
+                                name="difficulty"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            >
+                                <option value="easy" <%= preferences?.difficulty === 'easy' ? 'selected' : '' %>>Easy</option>
+                                <option value="medium" <%= (preferences?.difficulty === 'medium' || !preferences?.difficulty) ? 'selected' : '' %>>Medium</option>
+                                <option value="hard" <%= preferences?.difficulty === 'hard' ? 'selected' : '' %>>Hard</option>
+                                <option value="expert" <%= preferences?.difficulty === 'expert' ? 'selected' : '' %>>Expert</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Show Hints -->
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800">Show hints during quiz</p>
+                                <p class="text-sm text-gray-500">Display helpful hints for difficult questions</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="showHints" <%= preferences?.showHints === true ? 'checked' : '' %> class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                        
+                        <!-- Time Limit -->
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800">Enable time limit</p>
+                                <p class="text-sm text-gray-500">Add a time constraint to quiz questions</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="enableTimeLimit" <%= preferences?.enableTimeLimit === false ? '' : 'checked' %> class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Audio & Accessibility -->
+                <div class="bg-white rounded-xl shadow p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                        </svg>
+                        Audio & Accessibility
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Sound Effects -->
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800">Sound effects</p>
+                                <p class="text-sm text-gray-500">Play sounds for correct/incorrect answers</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="soundEnabled" <%= preferences?.soundEnabled === false ? '' : 'checked' %> class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                        
+                        <!-- Haptic Feedback -->
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800">Haptic feedback</p>
+                                <p class="text-sm text-gray-500">Vibration feedback on mobile devices</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="hapticEnabled" <%= preferences?.hapticEnabled === true ? 'checked' : '' %> class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2 mt-6"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Save Preferences
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>

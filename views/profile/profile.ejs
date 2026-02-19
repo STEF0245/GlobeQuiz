@@ -8,7 +8,7 @@
     <title>GlobeQuiz - Profile</title>
 </head>
 <body class="bg-gray-50">
-    <%- include('partials/header') %>
+    <%- include('../partials/header') %>
     
     <div class="container mx-auto px-4 py-8">
         <!-- Profile Header -->
@@ -28,7 +28,7 @@
                         <% } %>
                         <button class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg border-4 border-gray-50 hover:bg-gray-50 transition-colors">
                             <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0118.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </button>
@@ -43,12 +43,12 @@
                     </div>
                     
                     <!-- Edit Button -->
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
+                    <a href="/settings" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                         </svg>
                         Edit Profile
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -59,27 +59,27 @@
                 <!-- Statistics Cards -->
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
                     <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <div class="text-3xl font-bold text-blue-600 mb-2">12</div>
+                        <div class="text-3xl font-bold text-blue-600 mb-2"><%= userStats?.quizzesPlayed %></div>
                         <p class="text-gray-600 text-sm">Quizzes Played</p>
                     </div>
                     <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <div class="text-3xl font-bold text-green-600 mb-2">847</div>
+                        <div class="text-3xl font-bold text-green-600 mb-2"><%= userStats?.totalPoints %></div>
                         <p class="text-gray-600 text-sm">Total Points</p>
                     </div>
                     <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <div class="text-3xl font-bold text-purple-600 mb-2">85%</div>
+                        <div class="text-3xl font-bold text-purple-600 mb-2"><%= userStats?.averageScore %>%</div>
                         <p class="text-gray-600 text-sm">Average Score</p>
                     </div>
                     <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <div class="text-3xl font-bold text-orange-600 mb-2">#42</div>
+                        <div class="text-3xl font-bold text-orange-600 mb-2">#<%= userStats?.globalRank %></div>
                         <p class="text-gray-600 text-sm">Global Rank</p>
                     </div>
                     <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <div class="text-3xl font-bold text-indigo-600 mb-2">7</div>
+                        <div class="text-3xl font-bold text-indigo-600 mb-2"><%= userStats?.dayStreak %></div>
                         <p class="text-gray-600 text-sm">Day Streak</p>
                     </div>
                     <div class="bg-white rounded-xl shadow p-6 text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">5</div>
+                        <div class="text-3xl font-bold text-red-600 mb-2"><%= userStats?.achievements %></div>
                         <p class="text-gray-600 text-sm">Achievements</p>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Account Settings</h3>
                     
                     <div class="space-y-3">
-                        <a href="#" class="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 font-medium flex items-center gap-2">
+                        <a href="/settings" class="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 font-medium flex items-center gap-2">
                             <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -236,19 +236,20 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="text-sm text-gray-600">Week Progress</span>
-                                <span class="text-sm font-semibold text-gray-800">65%</span>
+                                <span class="text-sm font-semibold text-gray-800"><%= userStats?.weekProgress %>%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-blue-600 h-2 rounded-full" style="width: 65%"></div>
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: <%= userStats?.weekProgress %>%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="text-sm text-gray-600">Monthly Points</span>
-                                <span class="text-sm font-semibold text-gray-800">847/1000</span>
+                                <span class="text-sm font-semibold text-gray-800"><%= userStats?.monthlyPoints %>/<%= userStats?.monthlyPointsGoal %></span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
+                                <% const monthlyProgress = Math.round((userStats?.monthlyPoints / userStats?.monthlyPointsGoal * 100) || 0) %>
+                                <div class="bg-green-600 h-2 rounded-full" style="width: <%= monthlyProgress %>%"></div>
                             </div>
                         </div>
                     </div>
@@ -269,6 +270,6 @@
         </div>
     </div>
     
-    <%- include('partials/footer') %>
+    <%- include('../partials/footer') %>
 </body>
 </html>

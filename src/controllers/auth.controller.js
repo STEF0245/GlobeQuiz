@@ -9,10 +9,6 @@ export function registerPage(req, res) {
 	res.render('register', { user: req.user })
 }
 
-export function profilePage(req, res) {
-	res.render('profile', { user: req.user })
-}
-
 export async function sessionLogin(req, res) {
 	const { idToken } = req.body
 	try {
