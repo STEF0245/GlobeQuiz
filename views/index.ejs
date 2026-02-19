@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <title>GlobeQuiz - Test Your World Knowledge</title>
+</head>
+<body class="bg-gray-50">
+    <%- include('partials/header') %>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    Explore the World Through Quizzes
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100">
+                    Test your knowledge about countries, capitals, cultures, and geography. 
+                    Challenge yourself and compete with players worldwide!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <% if (user) { %>
+                        <a href="/quiz" class="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105">
+                            Start Quiz Now
+                        </a>
+                        <a href="/leaderboard" class="bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all border-2 border-white">
+                            View Leaderboard
+                        </a>
+                    <% } else { %>
+                        <a href="/register" class="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105">
+                            Get Started Free
+                        </a>
+                        <a href="/login" class="bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all border-2 border-white">
+                            Sign In
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-12 bg-white border-b">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">195+</div>
+                    <div class="text-gray-600">Countries</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">1000+</div>
+                    <div class="text-gray-600">Questions</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">50K+</div>
+                    <div class="text-gray-600">Players</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">∞</div>
+                    <div class="text-gray-600">Fun</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Why GlobeQuiz?</h2>
+                <p class="text-xl text-gray-600">Discover what makes us the best geography quiz platform</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Global Coverage</h3>
+                    <p class="text-gray-600">
+                        Questions covering every continent, from major capitals to hidden gems around the world.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Real-Time Competition</h3>
+                    <p class="text-gray-600">
+                        Compete with players worldwide and climb the leaderboard to become the ultimate geography master.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Track Progress</h3>
+                    <p class="text-gray-600">
+                        Monitor your improvement with detailed statistics and earn achievements along your learning journey.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">How It Works</h2>
+                <p class="text-xl text-gray-600">Start your journey in three simple steps</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-3xl font-bold">
+                            1
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Create Account</h3>
+                        <p class="text-gray-600">Sign up with Google or email in seconds</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-3xl font-bold">
+                            2
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Take Quizzes</h3>
+                        <p class="text-gray-600">Answer questions and test your knowledge</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-3xl font-bold">
+                            3
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Climb Ranks</h3>
+                        <p class="text-gray-600">Compete and become a geography champion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Ready to Test Your Knowledge?</h2>
+            <p class="text-xl mb-8 text-blue-100">Join thousands of players exploring the world through quizzes</p>
+            <% if (user) { %>
+                <a href="/quiz" class="inline-block bg-white text-blue-600 hover:bg-blue-50 px-10 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105">
+                    Start Playing Now
+                </a>
+            <% } else { %>
+                <a href="/register" class="inline-block bg-white text-blue-600 hover:bg-blue-50 px-10 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105">
+                    Join GlobeQuiz Today
+                </a>
+            <% } %>
+        </div>
+    </section>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>
