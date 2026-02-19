@@ -5,3 +5,11 @@ export async function renderHome(req, res, next) {
 		next(err)
 	}
 }
+
+export async function renderQuiz(req, res, next) {
+	try {
+		res.render('quiz', { user: req.user })
+	} catch (err) {
+		next(err)
+	}
+}
