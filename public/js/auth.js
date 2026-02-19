@@ -126,6 +126,9 @@ async function signInWithEmail(event) {
 			errorMessage = 'No account found with this email.'
 		} else if (error.code === 'auth/invalid-email') {
 			errorMessage = 'Invalid email address.'
+		} else if (error.code === 'auth/invalid-login-credentials') {
+			errorMessage =
+				'Invalid credentials. Please check your email and password.'
 		} else if (error.message) {
 			errorMessage = error.message
 		}

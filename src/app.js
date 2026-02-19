@@ -4,10 +4,12 @@ import cookieParser from 'cookie-parser'
 
 // Routes
 import authRoutes from './routes/auth.routes.js'
+import profileRoutes from './routes/profile.routes.js'
 import pageRoutes from './routes/page.routes.js'
 
 // Middleware
 import debug from './middleware/debug.middleware.js'
+import { getUserFromSession } from './middleware/auth.middleware.js'
 
 const app = express()
 
@@ -21,10 +23,11 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(process.cwd(), 'views'))
 
 // Middleware
-app.use(debug)
+app.use(getUserFromSession, debug)
 
 // Routes
 app.use(authRoutes)
+app.use(profileRoutes)
 app.use(pageRoutes)
 
 app.get('/favicon.ico', (req, res) =>
