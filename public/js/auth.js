@@ -1,80 +1,3 @@
-// Firebase config
-const firebaseConfig = {
-	apiKey: 'AIzaSyAl-Z-xiXS-LDpckKXw9yfhBqlq0WfSWiQ',
-	authDomain: 'globequiz-stef0245.firebaseapp.com',
-	projectId: 'globequiz-stef0245'
-}
-
-firebase.initializeApp(firebaseConfig)
-const auth = firebase.auth()
-
-// Google Auth Provider
-const googleProvider = new firebase.auth.GoogleAuthProvider()
-googleProvider.addScope('profile')
-googleProvider.addScope('email')
-
-// Google Sign In - Server-side session approach
-async function signInWithGoogle() {
-	const loadingBtn = event?.target
-	const originalText = loadingBtn?.innerHTML
-
-	try {
-		// Show loading state
-		if (loadingBtn) {
-			loadingBtn.disabled = true
-			loadingBtn.innerHTML = '<span>Signing in...</span>'
-		}
-
-		// Sign in with Google popup
-		const result = await auth.signInWithPopup(googleProvider)
-		const user = result.user
-
-		// Get ID token to send to server
-		const idToken = await user.getIdToken()
-
-		// Send token to server for session creation
-		const response = await fetch('/sessionLogin', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ idToken })
-		})
-
-		if (response.ok) {
-			const data = await response.json()
-			// Redirect to home page on success
-			window.location.href = '/'
-		} else {
-			const errorText = await response.text()
-			showError(errorText || 'Authentication failed. Please try again.')
-			if (loadingBtn) {
-				loadingBtn.disabled = false
-				loadingBtn.innerHTML = originalText
-			}
-		}
-	} catch (error) {
-		console.error('Error during sign in:', error)
-
-		// User-friendly error messages
-		let errorMessage = 'Failed to sign in with Google'
-		if (error.code === 'auth/popup-closed-by-user') {
-			errorMessage = 'Sign-in cancelled. Please try again.'
-		} else if (error.code === 'auth/network-request-failed') {
-			errorMessage = 'Network error. Please check your connection.'
-		} else if (error.message) {
-			errorMessage = error.message
-		}
-
-		showError(errorMessage)
-
-		if (loadingBtn) {
-			loadingBtn.disabled = false
-			loadingBtn.innerHTML = originalText
-		}
-	}
-}
-
 // Email/Password Sign In (for form submission)
 async function signInWithEmail(event) {
 	event.preventDefault()
@@ -90,27 +13,21 @@ async function signInWithEmail(event) {
 			submitBtn.innerHTML = 'Signing in...'
 		}
 
-		// Sign in with email/password
-		const result = await auth.signInWithEmailAndPassword(email, password)
-		const user = result.user
-
-		// Get ID token to send to server
-		const idToken = await user.getIdToken()
-
-		// Send token to server for session creation
-		const response = await fetch('/sessionLogin', {
+		// Send credentials to server
+		const response = await fetch('/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ idToken })
+			body: JSON.stringify({ email, password })
 		})
+
+		const data = await response.json()
 
 		if (response.ok) {
 			window.location.href = '/'
 		} else {
-			const errorText = await response.text()
-			showError(errorText || 'Authentication failed.')
+			showError(data.error || 'Authentication failed.')
 			if (submitBtn) {
 				submitBtn.disabled = false
 				submitBtn.innerHTML = originalText
@@ -118,22 +35,7 @@ async function signInWithEmail(event) {
 		}
 	} catch (error) {
 		console.error('Error during email sign in:', error)
-
-		let errorMessage = 'Failed to sign in'
-		if (error.code === 'auth/wrong-password') {
-			errorMessage = 'Incorrect password. Please try again.'
-		} else if (error.code === 'auth/user-not-found') {
-			errorMessage = 'No account found with this email.'
-		} else if (error.code === 'auth/invalid-email') {
-			errorMessage = 'Invalid email address.'
-		} else if (error.code === 'auth/invalid-login-credentials') {
-			errorMessage =
-				'Invalid credentials. Please check your email and password.'
-		} else if (error.message) {
-			errorMessage = error.message
-		}
-
-		showError(errorMessage)
+		showError('Failed to sign in. Please try again.')
 
 		if (submitBtn) {
 			submitBtn.disabled = false
@@ -171,31 +73,16 @@ async function registerWithEmail(event) {
 			submitBtn.innerHTML = 'Creating Account...'
 		}
 
-		// Create user with email/password
-		const result = await auth.createUserWithEmailAndPassword(
-			email,
-			password
-		)
-		const user = result.user
-
-		// Update profile with display name
-		if (name) {
-			await user.updateProfile({
-				displayName: name
-			})
-		}
-
-		// Get ID token to send to server
-		const idToken = await user.getIdToken()
-
-		// Send token to server for session creation
-		const response = await fetch('/sessionLogin', {
+		// Send registration data to server
+		const response = await fetch('/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ idToken })
+			body: JSON.stringify({ email, password, name })
 		})
+
+		const data = await response.json()
 
 		if (response.ok) {
 			showSuccess('Account created successfully!')
@@ -203,8 +90,7 @@ async function registerWithEmail(event) {
 				window.location.href = '/'
 			}, 1000)
 		} else {
-			const errorText = await response.text()
-			showError(errorText || 'Failed to create session.')
+			showError(data.error || 'Failed to create account.')
 			if (submitBtn) {
 				submitBtn.disabled = false
 				submitBtn.innerHTML = originalText
@@ -212,19 +98,7 @@ async function registerWithEmail(event) {
 		}
 	} catch (error) {
 		console.error('Error during registration:', error)
-
-		let errorMessage = 'Failed to create account'
-		if (error.code === 'auth/email-already-in-use') {
-			errorMessage = 'An account with this email already exists.'
-		} else if (error.code === 'auth/invalid-email') {
-			errorMessage = 'Invalid email address.'
-		} else if (error.code === 'auth/weak-password') {
-			errorMessage = 'Password is too weak. Use at least 6 characters.'
-		} else if (error.message) {
-			errorMessage = error.message
-		}
-
-		showError(errorMessage)
+		showError('Failed to create account. Please try again.')
 
 		if (submitBtn) {
 			submitBtn.disabled = false

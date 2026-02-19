@@ -1,4 +1,5 @@
 import admin from 'firebase-admin'
+import { getAuth } from 'firebase-admin/auth'
 import { readFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -17,4 +18,7 @@ admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount)
 })
 
-export { admin }
+const auth = getAuth()
+const db = admin.firestore()
+
+export { admin, auth, db }
