@@ -27,7 +27,7 @@ app.use(getUserFromSession, debug)
 
 // Routes
 app.use(authRoutes)
-app.use('/profile', profileRoutes)
+app.use(profileRoutes)
 app.use(pageRoutes)
 
 app.get('/favicon.ico', (req, res) =>

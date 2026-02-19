@@ -10,7 +10,7 @@ import { checkAuth } from '../middleware/auth.middleware.js'
 
 const router = express.Router()
 
-router.get('/', checkAuth, profilePage)
+router.get('/profile', checkAuth, profilePage)
 router.get('/settings', checkAuth, settingsPage)
 router.get('/preferences', checkAuth, preferencesPage)
 router.get('/password', checkAuth, passwordPage)

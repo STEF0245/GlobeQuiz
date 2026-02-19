@@ -17,7 +17,7 @@ export function profilePage(req, res) {
 		monthlyPointsGoal: 1000
 	}
 
-	res.render('profile/profile', { user, userStats })
+	res.render('profile', { user, userStats })
 }
 
 export function settingsPage(req, res) {
@@ -26,7 +26,7 @@ export function settingsPage(req, res) {
 		return res.redirect('/login')
 	}
 
-	res.render('profile/settings', { user })
+	res.render('settings', { user })
 }
 
 export function preferencesPage(req, res) {
@@ -47,7 +47,7 @@ export function preferencesPage(req, res) {
 		hapticEnabled: false
 	}
 
-	res.render('profile/preferences', { user, preferences })
+	res.render('preferences', { user, preferences })
 }
 
 export function passwordPage(req, res) {
@@ -56,7 +56,7 @@ export function passwordPage(req, res) {
 		return res.redirect('/login')
 	}
 
-	res.render('profile/password', { user })
+	res.render('password', { user })
 }
 
 export function notificationsPage(req, res) {
@@ -88,5 +88,5 @@ export function notificationsPage(req, res) {
 		}
 	}
 
-	res.render('profile/notifications', { user, notificationSettings })
+	res.render('notifications', { user, notificationSettings })
 }
