@@ -17,21 +17,21 @@ googleProvider.addScope('email')
 async function signInWithGoogle() {
 	const loadingBtn = event?.target
 	const originalText = loadingBtn?.innerHTML
-	
+
 	try {
 		// Show loading state
 		if (loadingBtn) {
 			loadingBtn.disabled = true
 			loadingBtn.innerHTML = '<span>Signing in...</span>'
 		}
-		
+
 		// Sign in with Google popup
 		const result = await auth.signInWithPopup(googleProvider)
 		const user = result.user
-		
+
 		// Get ID token to send to server
 		const idToken = await user.getIdToken()
-		
+
 		// Send token to server for session creation
 		const response = await fetch('/sessionLogin', {
 			method: 'POST',
@@ -40,7 +40,7 @@ async function signInWithGoogle() {
 			},
 			body: JSON.stringify({ idToken })
 		})
-		
+
 		if (response.ok) {
 			const data = await response.json()
 			// Redirect to home page on success
@@ -55,7 +55,7 @@ async function signInWithGoogle() {
 		}
 	} catch (error) {
 		console.error('Error during sign in:', error)
-		
+
 		// User-friendly error messages
 		let errorMessage = 'Failed to sign in with Google'
 		if (error.code === 'auth/popup-closed-by-user') {
@@ -65,9 +65,9 @@ async function signInWithGoogle() {
 		} else if (error.message) {
 			errorMessage = error.message
 		}
-		
+
 		showError(errorMessage)
-		
+
 		if (loadingBtn) {
 			loadingBtn.disabled = false
 			loadingBtn.innerHTML = originalText
@@ -78,25 +78,25 @@ async function signInWithGoogle() {
 // Email/Password Sign In (for form submission)
 async function signInWithEmail(event) {
 	event.preventDefault()
-	
+
 	const email = document.getElementById('email')?.value
 	const password = document.getElementById('password')?.value
 	const submitBtn = event.target.querySelector('button[type="submit"]')
 	const originalText = submitBtn?.innerHTML
-	
+
 	try {
 		if (submitBtn) {
 			submitBtn.disabled = true
 			submitBtn.innerHTML = 'Signing in...'
 		}
-		
+
 		// Sign in with email/password
 		const result = await auth.signInWithEmailAndPassword(email, password)
 		const user = result.user
-		
+
 		// Get ID token to send to server
 		const idToken = await user.getIdToken()
-		
+
 		// Send token to server for session creation
 		const response = await fetch('/sessionLogin', {
 			method: 'POST',
@@ -105,7 +105,7 @@ async function signInWithEmail(event) {
 			},
 			body: JSON.stringify({ idToken })
 		})
-		
+
 		if (response.ok) {
 			window.location.href = '/'
 		} else {
@@ -118,7 +118,7 @@ async function signInWithEmail(event) {
 		}
 	} catch (error) {
 		console.error('Error during email sign in:', error)
-		
+
 		let errorMessage = 'Failed to sign in'
 		if (error.code === 'auth/wrong-password') {
 			errorMessage = 'Incorrect password. Please try again.'
@@ -129,9 +129,9 @@ async function signInWithEmail(event) {
 		} else if (error.message) {
 			errorMessage = error.message
 		}
-		
+
 		showError(errorMessage)
-		
+
 		if (submitBtn) {
 			submitBtn.disabled = false
 			submitBtn.innerHTML = originalText
@@ -142,46 +142,49 @@ async function signInWithEmail(event) {
 // Email/Password Registration
 async function registerWithEmail(event) {
 	event.preventDefault()
-	
+
 	const name = document.getElementById('name')?.value
 	const email = document.getElementById('email')?.value
 	const password = document.getElementById('password')?.value
 	const confirmPassword = document.getElementById('confirm-password')?.value
 	const submitBtn = event.target.querySelector('button[type="submit"]')
 	const originalText = submitBtn?.innerHTML
-	
+
 	// Validate passwords match
 	if (password !== confirmPassword) {
 		showError('Passwords do not match')
 		return
 	}
-	
+
 	// Validate password length
 	if (password.length < 6) {
 		showError('Password must be at least 6 characters')
 		return
 	}
-	
+
 	try {
 		if (submitBtn) {
 			submitBtn.disabled = true
 			submitBtn.innerHTML = 'Creating Account...'
 		}
-		
+
 		// Create user with email/password
-		const result = await auth.createUserWithEmailAndPassword(email, password)
+		const result = await auth.createUserWithEmailAndPassword(
+			email,
+			password
+		)
 		const user = result.user
-		
+
 		// Update profile with display name
 		if (name) {
 			await user.updateProfile({
 				displayName: name
 			})
 		}
-		
+
 		// Get ID token to send to server
 		const idToken = await user.getIdToken()
-		
+
 		// Send token to server for session creation
 		const response = await fetch('/sessionLogin', {
 			method: 'POST',
@@ -190,7 +193,7 @@ async function registerWithEmail(event) {
 			},
 			body: JSON.stringify({ idToken })
 		})
-		
+
 		if (response.ok) {
 			showSuccess('Account created successfully!')
 			setTimeout(() => {
@@ -206,7 +209,7 @@ async function registerWithEmail(event) {
 		}
 	} catch (error) {
 		console.error('Error during registration:', error)
-		
+
 		let errorMessage = 'Failed to create account'
 		if (error.code === 'auth/email-already-in-use') {
 			errorMessage = 'An account with this email already exists.'
@@ -217,9 +220,9 @@ async function registerWithEmail(event) {
 		} else if (error.message) {
 			errorMessage = error.message
 		}
-		
+
 		showError(errorMessage)
-		
+
 		if (submitBtn) {
 			submitBtn.disabled = false
 			submitBtn.innerHTML = originalText
@@ -233,7 +236,7 @@ function showError(message) {
 	if (errorDiv) {
 		errorDiv.textContent = message
 		errorDiv.classList.remove('hidden')
-		
+
 		// Auto-hide after 5 seconds
 		setTimeout(() => {
 			errorDiv.classList.add('hidden')
@@ -249,7 +252,7 @@ function showSuccess(message) {
 	if (successDiv) {
 		successDiv.textContent = message
 		successDiv.classList.remove('hidden')
-		
+
 		setTimeout(() => {
 			successDiv.classList.add('hidden')
 		}, 3000)
@@ -257,13 +260,13 @@ function showSuccess(message) {
 }
 
 // Attach form handlers when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 	// Login form
 	const loginForm = document.getElementById('login-form')
 	if (loginForm) {
 		loginForm.addEventListener('submit', signInWithEmail)
 	}
-	
+
 	// Register form
 	const registerForm = document.getElementById('register-form')
 	if (registerForm) {
